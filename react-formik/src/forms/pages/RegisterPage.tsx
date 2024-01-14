@@ -2,14 +2,14 @@ import { useForm } from '../hooks/useForm';
 import '../styles/styles.css';
 
 export const RegisterPage = () => {
-  const { handleOnChance, handleOnSubmit, registerData } = useForm({
-    name: '',
-    email: '',
-    password1: '',
-    password2: '',
-  });
+  const { handleOnChance, handleOnSubmit, name, email, password1, password2 } =
+    useForm({
+      name: '',
+      email: '',
+      password1: '',
+      password2: '',
+    });
 
-  const { name, email, password1, password2 } = registerData;
   return (
     <div>
       <h1> Register Page</h1>

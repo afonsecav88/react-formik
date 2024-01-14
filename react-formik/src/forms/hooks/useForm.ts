@@ -1,18 +1,10 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 
-interface InitialStateForm {
-  name: string;
-  email: string;
-  password1: string;
-  password2: string;
-}
-
-export const useForm = (initialSate: InitialStateForm) => {
-  const [registerData, setRegisterData] =
-    useState<InitialStateForm>(initialSate);
+export const useForm = <T>(initialSate: T) => {
+  const [formData, setFormData] = useState<T>(initialSate);
 
   const handleOnChance = (e: ChangeEvent<HTMLInputElement>) => {
-    setRegisterData((prev) => ({
+    setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
@@ -20,8 +12,8 @@ export const useForm = (initialSate: InitialStateForm) => {
 
   const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(registerData);
+    console.log(formData);
   };
 
-  return { registerData, handleOnChance, handleOnSubmit };
+  return { ...formData, handleOnChance, handleOnSubmit };
 };
