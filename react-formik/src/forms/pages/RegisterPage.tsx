@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import '../styles/styles.css';
 
 export const RegisterPage = () => {
@@ -10,18 +10,25 @@ export const RegisterPage = () => {
   });
 
   const handleOnChance = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-    setRegisterData({ ...registerData, [name]: value });
-    // console.log(e.target.value);
+    // const { value, name } = e.target;
+    // setRegisterData({ ...registerData, [name]: value });
+    setRegisterData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(registerData);
   };
 
   const { name, email, password1, password2 } = registerData;
-  console.log(registerData);
 
   return (
     <div>
       <h1> Register Page</h1>
-      <form>
+      <form noValidate onSubmit={handleOnSubmit}>
         <input
           value={name}
           name="name"
