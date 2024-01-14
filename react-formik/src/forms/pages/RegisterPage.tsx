@@ -10,6 +10,7 @@ export const RegisterPage = () => {
     password1,
     password2,
     resetForm,
+    isValidEmail,
   } = useForm({
     name: '',
     email: '',
@@ -35,6 +36,7 @@ export const RegisterPage = () => {
           placeholder="email"
           onChange={handleOnChance}
         />
+        {!isValidEmail(email) && <span>Email no es válido</span>}
         <input
           name="password1"
           value={password1}
