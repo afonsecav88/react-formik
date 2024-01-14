@@ -2,13 +2,20 @@ import { useForm } from '../hooks/useForm';
 import '../styles/styles.css';
 
 export const RegisterPage = () => {
-  const { handleOnChance, handleOnSubmit, name, email, password1, password2 } =
-    useForm({
-      name: '',
-      email: '',
-      password1: '',
-      password2: '',
-    });
+  const {
+    handleOnChance,
+    handleOnSubmit,
+    name,
+    email,
+    password1,
+    password2,
+    resetForm,
+  } = useForm({
+    name: '',
+    email: '',
+    password1: '',
+    password2: '',
+  });
 
   return (
     <div>
@@ -43,6 +50,9 @@ export const RegisterPage = () => {
           onChange={handleOnChance}
         />
         <button type="submit">Create</button>
+        <button onClick={resetForm} type="submit">
+          Reset Form
+        </button>
       </form>
     </div>
   );
