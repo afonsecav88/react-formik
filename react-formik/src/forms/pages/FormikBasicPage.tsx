@@ -36,20 +36,21 @@ export const FormikBasicPage = () => {
     return errors;
   };
 
-  const { handleSubmit, handleChange, values } = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-    },
-    onSubmit: (values) => {
-      console.log(values);
-    },
-    validate,
-    //  async onSubmit(values) {
-    //    console.log(values);
-    //  },
-  });
+  const { handleSubmit, handleChange, values, errors, touched, handleBlur } =
+    useFormik({
+      initialValues: {
+        firstName: '',
+        lastName: '',
+        email: '',
+      },
+      onSubmit: (values) => {
+        console.log(values);
+      },
+      validate,
+      //  async onSubmit(values) {
+      //    console.log(values);
+      //  },
+    });
 
   const { firstName, lastName, email } = values;
 
@@ -64,8 +65,11 @@ export const FormikBasicPage = () => {
           value={firstName}
           placeholder="First Name"
           onChange={handleChange}
+          onBlur={handleBlur}
         />
-        <span>First name i s required </span>
+        {touched.firstName && errors.firstName && (
+          <span>{errors.firstName}</span>
+        )}
 
         <label htmlFor="lastName">Last Name</label>
         <input
@@ -74,8 +78,9 @@ export const FormikBasicPage = () => {
           value={lastName}
           placeholder="Last Name"
           onChange={handleChange}
+          onBlur={handleBlur}
         />
-        <span>Last name i s required </span>
+        {touched.lastName && errors.lastName && <span>{errors.lastName}</span>}
 
         <label htmlFor="email">Email</label>
         <input
@@ -84,10 +89,10 @@ export const FormikBasicPage = () => {
           value={email}
           placeholder="Email"
           onChange={handleChange}
+          onBlur={handleBlur}
         />
 
-        <span>Email is required </span>
-        <span>Check for an valid email format </span>
+        {touched.email && errors.email && <span>{errors.email}</span>}
 
         <button type="submit">Submit</button>
       </form>
