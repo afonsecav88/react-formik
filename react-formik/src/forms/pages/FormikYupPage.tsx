@@ -1,4 +1,5 @@
 import { FormikErrors, useFormik } from 'formik';
+import * as Yup from 'yup';
 import '../styles/styles.css';
 
 export const FormikYupPage = () => {
@@ -7,34 +8,6 @@ export const FormikYupPage = () => {
     lastName: string;
     email: string;
   }
-
-  const validate = ({ firstName, lastName, email }: FormValues) => {
-    const errors: FormikErrors<FormValues> = {};
-
-    if (!firstName) {
-      errors.firstName = 'First name is required';
-    } else if (firstName.length >= 15) {
-      errors.firstName = 'Must be 15 characters or less';
-    }
-
-    if (!lastName) {
-      errors.lastName = 'Last name is required';
-    } else if (lastName.length >= 10) {
-      errors.lastName = 'Must be 10 characters or less';
-    }
-
-    if (!email) {
-      {
-        errors.email = 'Required';
-      }
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-      {
-        errors.email = 'Invalid email address';
-      }
-    }
-    console.log(errors);
-    return errors;
-  };
 
   const { handleSubmit, handleChange, values, errors, touched, handleBlur } =
     useFormik({
@@ -46,10 +19,19 @@ export const FormikYupPage = () => {
       onSubmit: (values) => {
         console.log(values);
       },
-      validate,
-      //  async onSubmit(values) {
-      //    console.log(values);
-      //  },
+      validationSchema: Yup.object({
+        firstName: Yup.string()
+          .max(10, 'Debe tener 10 o menos caracteres')
+          .required('Este campo es requerido'),
+
+        lastName: Yup.string()
+          .max(15, 'Debe tener 15 o menos caracteres')
+          .required('Este campo es requerido'),
+
+        email: Yup.string()
+          .email('Debe ser un correo válido')
+          .required('Este campo es requerido'),
+      }),
     });
 
   const { firstName, lastName, email } = values;
