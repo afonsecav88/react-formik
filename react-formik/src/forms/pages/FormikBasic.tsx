@@ -1,7 +1,7 @@
 import { FormikErrors, useFormik } from 'formik';
 import '../styles/styles.css';
 
-export const FormikBasicPage = () => {
+export const FormikBasic = () => {
   interface FormValues {
     firstName: string;
     lastName: string;
@@ -56,7 +56,7 @@ export const FormikBasicPage = () => {
 
   return (
     <div>
-      <h1>Formik Basic tutorial</h1>
+      <h1>Formik Basic</h1>
       <form noValidate onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name</label>
         <input

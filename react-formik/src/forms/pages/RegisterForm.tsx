@@ -1,7 +1,7 @@
 import { useForm } from '../hooks/useForm';
 import '../styles/styles.css';
 
-export const RegisterPage = () => {
+export const RegisterForm = () => {
   const {
     handleOnChance,
     handleOnSubmit,
@@ -20,7 +20,7 @@ export const RegisterPage = () => {
 
   return (
     <div>
-      <h1> Register Page</h1>
+      <h1> Register Form</h1>
       <form noValidate onSubmit={handleOnSubmit}>
         <input
           value={name}

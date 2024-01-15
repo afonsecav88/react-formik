@@ -1,9 +1,9 @@
-import { FormikYupPage } from './forms/pages/FormikYupPage';
+import { FormikYup } from './forms/pages/FormikYup';
 
 export const App = () => {
   return (
     <>
-      <FormikYupPage />
+      <FormikYup />
     </>
   );
 };

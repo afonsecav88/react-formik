@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import '../styles/styles.css';
 
-export const FormikYupPage = () => {
+export const FormikYup = () => {
   const { handleSubmit, errors, touched, getFieldProps } = useFormik({
     initialValues: {
       firstName: '',
@@ -29,7 +29,7 @@ export const FormikYupPage = () => {
 
   return (
     <div>
-      <h1>Formik Yup Tutorial</h1>
+      <h1>Formik Yup</h1>
       <form noValidate onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name</label>
         <input

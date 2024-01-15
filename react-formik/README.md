@@ -1,27 +1,24 @@
-# React + TypeScript + Vite
+## Repo para el manejo de formularios
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+En este repo contiene varios tipos de formularios:
 
-Currently, two official plugins are available:
+- Formulario html básico (RegisterForm).
+- Formulario usando Formik (FormikBasic).
+- Formulario usando Formik y esquema de validación con Yup(FormikYup).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Nota: Por defecto se muestra el componente FormikYup.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Uso de Formik para la creación del formularios
 
-- Configure the top-level `parserOptions` property like this:
+- Documentación oficial [Getting Started whith Formik](https://formik.org/docs/overview)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Uso de Yup para esquemas de validación
+
+- Documentación oficial [Install and documentation of Yup](https://www.npmjs.com/package/yup)
+  
+
+### Levantar la aplicación en desarrollo
+1. Para instalar dependencias de desarrollo ```npm install```
+2. Para levantar el server de desarrollo ```npm run dev``` 
