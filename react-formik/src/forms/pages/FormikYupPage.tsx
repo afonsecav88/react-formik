@@ -1,40 +1,31 @@
-import { FormikErrors, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import '../styles/styles.css';
 
 export const FormikYupPage = () => {
-  interface FormValues {
-    firstName: string;
-    lastName: string;
-    email: string;
-  }
+  const { handleSubmit, errors, touched, getFieldProps } = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+    validationSchema: Yup.object({
+      firstName: Yup.string()
+        .max(10, 'Debe tener 10 o menos caracteres')
+        .required('Este campo es requerido'),
 
-  const { handleSubmit, handleChange, values, errors, touched, handleBlur } =
-    useFormik({
-      initialValues: {
-        firstName: '',
-        lastName: '',
-        email: '',
-      },
-      onSubmit: (values) => {
-        console.log(values);
-      },
-      validationSchema: Yup.object({
-        firstName: Yup.string()
-          .max(10, 'Debe tener 10 o menos caracteres')
-          .required('Este campo es requerido'),
+      lastName: Yup.string()
+        .max(15, 'Debe tener 15 o menos caracteres')
+        .required('Este campo es requerido'),
 
-        lastName: Yup.string()
-          .max(15, 'Debe tener 15 o menos caracteres')
-          .required('Este campo es requerido'),
-
-        email: Yup.string()
-          .email('Debe ser un correo válido')
-          .required('Este campo es requerido'),
-      }),
-    });
-
-  const { firstName, lastName, email } = values;
+      email: Yup.string()
+        .email('Debe ser un correo válido')
+        .required('Este campo es requerido'),
+    }),
+  });
 
   return (
     <div>
@@ -43,11 +34,8 @@ export const FormikYupPage = () => {
         <label htmlFor="firstName">First Name</label>
         <input
           type="text"
-          name="firstName"
-          value={firstName}
-          placeholder="First Name"
-          onChange={handleChange}
-          onBlur={handleBlur}
+          {...getFieldProps('firstName')}
+          placeholder="First name"
         />
         {touched.firstName && errors.firstName && (
           <span>{errors.firstName}</span>
@@ -56,23 +44,13 @@ export const FormikYupPage = () => {
         <label htmlFor="lastName">Last Name</label>
         <input
           type="text"
-          name="lastName"
-          value={lastName}
-          placeholder="Last Name"
-          onChange={handleChange}
-          onBlur={handleBlur}
+          {...getFieldProps('lastName')}
+          placeholder="Last name"
         />
         {touched.lastName && errors.lastName && <span>{errors.lastName}</span>}
 
         <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          placeholder="Email"
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+        <input type="email" {...getFieldProps('email')} placeholder="Email" />
 
         {touched.email && errors.email && <span>{errors.email}</span>}
 
